@@ -7,8 +7,6 @@ $('input.new-todo').keypress(function(a){
         $('ul.todo-list').append('<li><div class="view"><input class="toggle" type="checkbox"><label>' + inpValue + '</label><button class="destroy"></button></div><input class="edit" value= "' + inpValue +' "></li>');
         //delete input place
         $('input.new-todo').val(''); 
-        
-              
         updateCounters();
     }
   
@@ -26,9 +24,7 @@ $('body').on('change','input.toggle' , function(event){
 })
 //function destroy to-do
 $('body').on('click','button.destroy', function(event){
-    //console.log(event);
     $(event.target).parents('li').remove();
-    
     updateCounters();
 
 })
@@ -38,7 +34,6 @@ $('input.toggle-all').change(function(event){
     if(event.target.checked){
     $('ul.todo-list li').addClass('completed');
     $('ul.todo-list input.toggle').prop('checked', true);
-   // console.log(event);
     }else{
     $('ul.todo-list li').removeClass('completed');
     $('ul.todo-list input.toggle').prop('checked', false);
@@ -47,7 +42,7 @@ updateCounters();
 })
 
 
-//filters all/active/completed
+//filters all/active/completed---------
 
 $('a[href="#/"').click(function(){
     $('.todo-list li').hide();
@@ -70,13 +65,12 @@ $(' a[href="#/completed"]').click(function(){
     $('.todo-list li').hide();
     $('li.completed').show();
     $('li a').removeClass('selected');
-    $('a[href="#/completed"]').addClass('selected');
-
-    
+    $('a[href="#/completed"]').addClass('selected');    
 })
-//button clear compleated
+
+
+//button clear compleated-------------------
 $('button.clear-completed').click(function(event){
-    //console.log(event);
     $('li.completed').remove();
     $('button.clear-completed').hide();
     updateCounters()
@@ -101,12 +95,10 @@ $('body').keypress(function (event) {
     if (event.charCode === 13) {
         $('ul.todo-list li.editing').removeClass('editing');
     }
-     //esc == 27
-  //enter == 13
 })
 
 
-//editing function
+//editing function-----------------------------------
 $('body').on('dblclick', 'ul.todo-list li', function(event){  
     $(event.currentTarget).addClass('editing'); 
     $(event.currentTarget).find('input').focus();
@@ -114,27 +106,8 @@ $('body').on('dblclick', 'ul.todo-list li', function(event){
  
 })
 
-// // editing data in li
-// $('input.editing').keypress(function(a){
-//     let editVal = $('input.edit').val();
-//     if(a.charCode === 13 ){
-//      $(event.target).parents('li').find('label').html(event.target.value);   
-//         $('ul.todo-list li').removeClass('editing');
-//         $('ul.todo-list li').text(editVal);
-//     }
-//     console.log(event.charCode);
-//     console.log(editVal);
-// })
-
-
-
-
-
-
-
-//counter
+//counter-----------------------------
    $('body').change(updateCounters);
-
 
 function updateCounters() {
     let allLi = $('ul.todo-list li').length;
@@ -154,10 +127,5 @@ function updateCounters() {
             $('footer').css('display', 'block');
         }
 }
-
-
 updateCounters();
-
-
-
 });
